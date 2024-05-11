@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:ignore="ExtraText"
+    tools:context=".Search">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="125dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/username_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corner"
+                android:hint="What are you looking for?"
+                android:inputType="text"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:padding="10dp"
+                android:text="Categroies"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnPhones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Phone and GPS"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnCameras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Camera and Photo"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnComputers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Computers and Accessories"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Audio and Video"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnGames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Games and Consoles"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnHousehold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Home and Household"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnBeauty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Beauty and Health"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnSports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="250dp"
+                android:background="@drawable/login_background"
+                android:text="Outdoor and Sports"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</FrameLayout>
