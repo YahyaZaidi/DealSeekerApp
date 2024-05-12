@@ -39,9 +39,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.search -> replaceFragment(Search())
                 R.id.profile -> replaceFragment(Profile())
                 R.id.wishlist -> replaceFragment(Wishlist())
-                R.id.btnPhones -> {
+                R.id.btnPhones -> {replaceFragment(PhonesAndGPS())
                     // Handle button click on the Phones and GPS page
-                    replaceFragment(PhonesAndGPS())
                 }
                 else -> {
                     // Handle other menu items if needed
