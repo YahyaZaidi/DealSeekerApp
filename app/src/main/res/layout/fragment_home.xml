@@ -62,6 +62,43 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_phones"
+                        android:text="Phones and GPS"
+                        android:onClick="openPhonesSegment"/>
+
+                    <Button
+                        android:id="@+id/btn_cameras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cameras"
+                        android:onClick="openCamerasSegment" />
+
+                    <Button
+                        android:id="@+id/btn_computers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Computer and Accesories"
+                        android:onClick="openComputersSegment" />
+
+                    <Button
+                        android:id="@+id/btn_audio_video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Audio and Video"
+                        android:onClick="openAudioVideoSegment" />
+
+                    <Button
+                        android:id="@+id/btn_games"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Games and consoles"
+                        android:onClick="openGamesSegment" />
+
+
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
