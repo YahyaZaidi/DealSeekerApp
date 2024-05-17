@@ -53,7 +53,6 @@ class loginActivity : AppCompatActivity() {
         binding.forgotPasswordRedirect.setOnClickListener {
 
             startActivity(Intent(this@loginActivity, ForgotPassword::class.java))
-            finish()
         }
 
     }
