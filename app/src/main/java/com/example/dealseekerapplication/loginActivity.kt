@@ -50,6 +50,12 @@ class loginActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.forgotPasswordRedirect.setOnClickListener {
+
+            startActivity(Intent(this@loginActivity, ForgotPassword::class.java))
+            finish()
+        }
+
     }
     private fun loginUser(username: String, password: String) {
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object : ValueEventListener{
