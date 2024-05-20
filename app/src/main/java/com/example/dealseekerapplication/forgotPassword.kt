@@ -31,21 +31,21 @@ class forgotPassword : AppCompatActivity() {
             val username = binding.username.text.toString()
             val password = binding.newPassword.text.toString()
 
-            if (username.isNotEmpty() && newPassword.isNotEmpty()) {
-                updatePassword(username, newPassword)
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                updatePassword(username, password)
             } else {
                 Toast.makeText(this@forgotPassword, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
-    private fun updatePassword(username: String, newPassword: String) {
+    private fun updatePassword(username: String, password: String) {
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (userSnapshot in dataSnapshot.children) {
                         val user = userSnapshot.getValue(User::class.java)
-                        userSnapshot.ref.child("password").setValue(newPassword)
+                        userSnapshot.ref.child("password").setValue(password)
                     }
                     Toast.makeText(this@forgotPassword, "Password updated successfully", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@forgotPassword, loginActivity::class.java))
