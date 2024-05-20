@@ -37,6 +37,13 @@ class forgotPassword : AppCompatActivity() {
                 Toast.makeText(this@forgotPassword, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.loginRedirect.setOnClickListener {
+            startActivity(Intent(this@forgotPassword, loginActivity::class.java))
+            finish()
+
+
+        }
     }
     private fun updatePassword(username: String, password: String) {
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object :
