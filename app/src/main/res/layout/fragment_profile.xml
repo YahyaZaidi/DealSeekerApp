@@ -9,7 +9,7 @@
     android:gravity="center"
     android:padding="16dp"
     tools:ignore="ExtraText"
-    tools:context=".Profile">
+    tools:context="Profile">
 
 
     <Button
@@ -22,12 +22,16 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/privacy_policy"
+        android:id="@+id/privacypolicy"
         android:text="Privacy Policy"
         android:layout_marginTop="300dp"/>
 
-
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/requestsupport"
+        android:text="Request Support"
+        android:layout_marginTop="350dp"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -42,7 +46,8 @@
         android:layout_width="56dp"
         android:layout_height="75dp"
         android:src="@drawable/facebook"
-        android:layout_gravity="right|bottom"/>
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="100dp"/>
 
 
     <ImageView
@@ -50,14 +55,16 @@
         android:layout_width="55dp"
         android:layout_height="74dp"
         android:src="@drawable/instagram"
-        android:layout_gravity="center|bottom"/>
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="100dp"/>
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="56dp"
         android:layout_height="75dp"
         android:src="@drawable/twitter"
-        android:layout_gravity="left|bottom"/>
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="100dp"/>
 
 
 
