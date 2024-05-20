@@ -51,9 +51,10 @@ class loginActivity : AppCompatActivity() {
         }
 
         binding.forgotPasswordRedirect.setOnClickListener {
-
-            startActivity(Intent(this@loginActivity, ForgotPassword::class.java))
-            finish()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, ForgotPassword())
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
 
     }
