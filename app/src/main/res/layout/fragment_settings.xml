@@ -18,8 +18,9 @@
         android:padding="@dimen/pading"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:textStyle="bold"
-        android:text="Settings "
+        android:text="Settings"
         android:layout_marginTop="30dp"
+
         />
 
     <Button
@@ -35,6 +36,13 @@
         android:id="@+id/changepassword"
         android:text="change password"
         android:layout_marginTop="130dp"/>
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginTop="650dp"/>
 
 
 </RelativeLayout>
