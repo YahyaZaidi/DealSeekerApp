@@ -30,6 +30,12 @@ android {
             )
         }
     }
+
+    buildFeatures{
+
+        viewBinding; true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -51,6 +57,9 @@ android {
     }
 }
 
+
+
+
 dependencies {
 
     implementation("com.google.android.material:material:1.9.0")
@@ -68,6 +77,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
