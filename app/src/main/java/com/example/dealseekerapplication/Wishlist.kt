@@ -1,59 +1,115 @@
 package com.example.dealseekerapplication
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import org.json.JSONArray
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Wishlist.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Wishlist : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var listView: ListView
+    private lateinit var adapter: WishlistAdapter
+    private var wishlistItems = ArrayList<String>()
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadWishlistItems()
+        adapter.notifyDataSetChanged()
+        updateUI()  // Call a method to handle UI updates
+    }
+
+    private fun updateUI() {
+        val emptyStateTextView = view?.findViewById<TextView>(R.id.empty_state_textview)
+        if (wishlistItems.isEmpty()) {
+            listView.visibility = View.GONE
+            emptyStateTextView?.visibility = View.VISIBLE
+        } else {
+            listView.visibility = View.VISIBLE
+            emptyStateTextView?.visibility = View.GONE
         }
     }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wishlist, container, false)
+        val view = inflater.inflate(R.layout.fragment_wishlist, container, false)
+        listView = view.findViewById(R.id.wishlist_list_view)
+        adapter = WishlistAdapter(requireContext(), wishlistItems)
+        listView.adapter = adapter
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Wishlist.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Wishlist().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    private fun loadWishlistItems() {
+        val prefs = requireActivity().getSharedPreferences("WishlistPrefs", Context.MODE_PRIVATE)
+        val itemsJson = prefs.getString("wishlistItems", null)
+        Log.d("Wishlist", "Loading items: $itemsJson")
+        itemsJson?.let {
+            val jsonArray = JSONArray(it)
+            wishlistItems.clear()
+            for (i in 0 until jsonArray.length()) {
+                val item = jsonArray.getString(i)
+                wishlistItems.add(item)
+                Log.d("Wishlist", "Loaded item: $item")
             }
+        }
+        if (wishlistItems.isEmpty()) {
+            Log.d("Wishlist", "No items found in SharedPreferences.")
+        }
     }
+
+
+
+    private fun saveWishlistItems() {
+        val prefs = requireActivity().getSharedPreferences("WishlistPrefs", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        val jsonArray = JSONArray()
+        wishlistItems.forEach { jsonArray.put(it) }
+        editor.putString("wishlistItems", jsonArray.toString())
+        editor.apply()
+    }
+
+    inner class WishlistAdapter(context: Context, objects: ArrayList<String>)
+        : ArrayAdapter<String>(context, R.layout.wishlist_item, objects) {
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val inflater = LayoutInflater.from(context)
+            val view = convertView ?: inflater.inflate(R.layout.wishlist_item, parent, false)
+
+            val itemName = view.findViewById<TextView>(R.id.item_name)
+            val removeButton = view.findViewById<Button>(R.id.remove_button)
+
+            val item = getItem(position)
+            itemName.text = item ?: "Missing Item"
+
+            removeButton.setOnClickListener {
+                remove(item)
+                notifyDataSetChanged()
+                saveWishlistItems()
+                Toast.makeText(context, "Item removed", Toast.LENGTH_SHORT).show()
+            }
+
+            return view
+        }
+    }
+
+
+
 }
+
+
+

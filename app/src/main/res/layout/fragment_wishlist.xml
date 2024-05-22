@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Wishlist"
-    android:background="@drawable/login_background">
+    android:background="@drawable/login_background"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".Wishlist">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Title for the Wishlist -->
     <TextView
+        android:id="@+id/wishlist_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_background"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Wishlist"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+
+    <!-- ListView to display wishlist items -->
+    <ListView
+        android:id="@+id/wishlist_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/white"
+        android:dividerHeight="1dp" />
+
+    <TextView
+        android:id="@+id/empty_state_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Your wishlist is empty"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+
+</LinearLayout>
