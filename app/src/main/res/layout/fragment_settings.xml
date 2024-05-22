@@ -37,12 +37,5 @@
         android:text="change password"
         android:layout_marginTop="130dp"/>
 
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="650dp"/>
-
 
 </RelativeLayout>
