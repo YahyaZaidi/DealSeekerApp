@@ -18,6 +18,7 @@ import com.google.firebase.firestore.auth.User
 class forgotPassword : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
+    private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,7 @@ class forgotPassword : AppCompatActivity() {
                 if (dataSnapshot.exists()) {
                     for (userSnapshot in dataSnapshot.children) {
                         val user = userSnapshot.getValue(User::class.java)
-                        userSnapshot.ref.child("password").setValue(password)
+                        userSnapshot.ref.child("userPassword").setValue(password)
                     }
                     Toast.makeText(this@forgotPassword, "Password updated successfully", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@forgotPassword, loginActivity::class.java))
