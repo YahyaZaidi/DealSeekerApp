@@ -70,36 +70,17 @@
                         android:layout_height="35dp"
                         android:src="@drawable/smartphone"/>
 
-                    <TextView
+                    <Button
+                        android:id="@+id/btnphoneandgps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phones and GPS"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
-                <!-- Category: Phones and GPS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/smartphone"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Phones and GPS"
-                        android:textSize="15sp"
-                        android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
-                </LinearLayout>
 
                 <!-- Category: Cameras -->
                 <LinearLayout
@@ -114,13 +95,15 @@
                         android:layout_height="35dp"
                         android:src="@drawable/camera"/>
 
-                    <TextView
+                    <Button
+                        android:id="@+id/btnCameras"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cameras"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!-- Category: Computers and Accessories -->
@@ -136,13 +119,15 @@
                         android:layout_height="35dp"
                         android:src="@drawable/imac" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/btnComputers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Computer and Accessories"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!-- Category: Audio and Video -->
@@ -158,13 +143,15 @@
                         android:layout_height="35dp"
                         android:src="@drawable/home_cinema" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/btnAudio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Audio and Video"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!-- Category: Games and Consoles -->
@@ -180,13 +167,15 @@
                         android:layout_height="35dp"
                         android:src="@drawable/game_console"/>
 
-                    <TextView
+                    <Button
+                        android:id="@+id/btnGames"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Games and Consoles"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
             </LinearLayout>
