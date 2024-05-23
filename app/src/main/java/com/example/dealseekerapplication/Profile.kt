@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.dealseekerapplication.databinding.FragmentProfileBinding
 
@@ -43,8 +44,14 @@ class Profile : Fragment(R.layout.fragment_profile) {
             replaceFragment(Twitter())
         }
 
-    }
+        // Find the ImageView
+        val instagramImageView: ImageView = view.findViewById(R.id.instagram)
 
+        // Set OnClickListener for the ImageView
+        instagramImageView.setOnClickListener {
+            openInstagram()
+        }
+    }
 
     private fun openInstagram() {
         val uri = Uri.parse("https://www.instagram.com/dealseeker8/")
@@ -56,7 +63,6 @@ class Profile : Fragment(R.layout.fragment_profile) {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/dealseeker8/")))
         }
     }
-
 
     private fun replaceFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
