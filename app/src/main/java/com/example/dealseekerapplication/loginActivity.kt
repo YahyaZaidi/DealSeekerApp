@@ -57,6 +57,7 @@ class loginActivity : AppCompatActivity() {
         }
 
     }
+
     private fun loginUser(username: String, password: String) {
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
