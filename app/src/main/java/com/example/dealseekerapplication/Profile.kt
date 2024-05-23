@@ -40,16 +40,28 @@ class Profile : Fragment(R.layout.fragment_profile) {
             replaceFragment(RequestSupport())
         }
 
-        binding.twitter.setOnClickListener {
-            replaceFragment(Twitter())
-        }
-
         // Find the ImageView
         val instagramImageView: ImageView = view.findViewById(R.id.instagram)
 
         // Set OnClickListener for the ImageView
         instagramImageView.setOnClickListener {
             openInstagram()
+        }
+
+        // Find the ImageView for Facebook
+        val facebookImageView: ImageView = view.findViewById(R.id.facebook)
+
+        // Set OnClickListener for Facebook
+        facebookImageView.setOnClickListener {
+            openSocialMedia("https://www.facebook.com/profile.php?id=61560205074195", "com.facebook.katana")
+        }
+
+        // Find the ImageView for Twitter
+        val twitterImageView: ImageView = view.findViewById(R.id.twitter)
+
+        // Set OnClickListener for Twitter
+        twitterImageView.setOnClickListener {
+            openSocialMedia("https://x.com/home", "com.twitter.android")
         }
     }
 
@@ -61,6 +73,17 @@ class Profile : Fragment(R.layout.fragment_profile) {
             startActivity(instagram)
         } catch (e: ActivityNotFoundException) {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/dealseeker8/")))
+        }
+    }
+
+    private fun openSocialMedia(profileUrl: String, appPackage: String) {
+        val uri = Uri.parse(profileUrl)
+        val socialMediaIntent = Intent(Intent.ACTION_VIEW, uri)
+        socialMediaIntent.setPackage(appPackage)
+        try {
+            startActivity(socialMediaIntent)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(profileUrl)))
         }
     }
 
