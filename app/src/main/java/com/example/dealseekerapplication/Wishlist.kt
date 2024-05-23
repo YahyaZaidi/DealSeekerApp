@@ -72,8 +72,6 @@ class Wishlist : Fragment() {
         }
     }
 
-
-
     private fun saveWishlistItems() {
         val prefs = requireActivity().getSharedPreferences("WishlistPrefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()
