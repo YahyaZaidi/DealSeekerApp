@@ -35,7 +35,12 @@ class Profile : Fragment(R.layout.fragment_profile) {
             replaceFragment(RequestSupport())
         }
 
+        binding.twitter.setOnClickListener {
+            replaceFragment(Twitter())
+        }
+
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
