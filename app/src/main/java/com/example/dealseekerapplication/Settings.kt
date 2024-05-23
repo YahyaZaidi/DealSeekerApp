@@ -20,13 +20,6 @@ class Settings : Fragment(R.layout.fragment_settings) {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.backButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

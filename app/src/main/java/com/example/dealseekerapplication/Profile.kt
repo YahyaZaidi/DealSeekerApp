@@ -39,7 +39,7 @@ class Profile : Fragment(R.layout.fragment_profile) {
 
     private fun replaceFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
-            .replace(R.id.main, fragment)
+            .replace(R.id.frame_layout, fragment)
             .addToBackStack(null)
             .commit()
     }
