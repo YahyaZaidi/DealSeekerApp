@@ -62,7 +62,7 @@ class loginActivity : AppCompatActivity() {
         }
 
     }
-    //Function to login user
+
     private fun loginUser(username: String, password: String) {
         //Query the database to check if the user exists
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object : ValueEventListener{
