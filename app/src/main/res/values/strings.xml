@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">DealSeekerApplication</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Notifications related strings -->
+    <string name="default_notification_channel_id">default_channel</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notification_channel_name">General Notifications</string>
+    <string name="notification_channel_description">General notifications for app updates, offers, and alerts</string>
+    <string name="fcm_message">Important Update!</string>
+    <string name="notification_title">DealSeeker Alert!</string>
 </resources>
