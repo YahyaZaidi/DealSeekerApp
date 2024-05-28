@@ -35,7 +35,8 @@ class forgotPassword : AppCompatActivity() {
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 updatePassword(username, password)
             } else {
-                Toast.makeText(this@forgotPassword, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@forgotPassword, "Please fill in all fields", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -46,25 +47,50 @@ class forgotPassword : AppCompatActivity() {
 
         }
     }
+
     private fun updatePassword(username: String, password: String) {
-        databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (userSnapshot in dataSnapshot.children) {
-                        val user = userSnapshot.getValue(User::class.java)
-                        userSnapshot.ref.child("userPassword").setValue(password)
+        databaseReference.orderByChild("username").equalTo(username)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                //Handle database changes
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    //Check if the username already exists
+                    if (dataSnapshot.exists()) {
+                        for (snapshot in dataSnapshot.children) {
+                            val user = snapshot.getValue(UserData::class.java)
+                            if (user != null) {
+                                user.password = password
+                                snapshot.ref.setValue(user)
+                                Toast.makeText(
+                                    this@forgotPassword,
+                                    "Password reset successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                //Start login activity and end the current activity
+                                startActivity(
+                                    Intent(
+                                        this@forgotPassword,
+                                        loginActivity::class.java
+                                    )
+                                )
+                                finish()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@forgotPassword,
+                            "Username does not exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    Toast.makeText(this@forgotPassword, "Password updated successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@forgotPassword, loginActivity::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this@forgotPassword, "User not found", Toast.LENGTH_SHORT).show()
                 }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@forgotPassword, "Error updating password", Toast.LENGTH_SHORT).show()
-            }
-        })
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(
+                        this@forgotPassword,
+                        "Database Error: ${databaseError.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
 }
