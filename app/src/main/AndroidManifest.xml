@@ -43,7 +43,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            />
+
+            <activity android:name=".RequestSupport">
+
 
         </activity>
         <service
@@ -54,6 +58,12 @@
             </intent-filter>
         </service>
 
+
+
+
+
     </application>
+
+
 
 </manifest>

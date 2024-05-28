@@ -1,52 +1,39 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:ignore="ExtraText"
-    tools:context=".PrivacyPolicy">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/settingsheading"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:padding="@dimen/pading"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:textStyle="bold"
-        android:text="Request Support "
-        android:layout_marginTop="30dp"
-
-        />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/Name"
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Name"
-        android:textColor="@color/white"
-        />
-
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"/>
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:text="Email"
-        android:textColor="@color/white"/>
+        android:hint="Email"
+        android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/Description"
+        android:id="@+id/messageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:text="Description"
-        android:textColor="@color/white"/>
+        android:hint="Message"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:maxLines="5"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>
+
