@@ -41,7 +41,15 @@ class Search : Fragment(R.layout.fragment_search) {
         binding.btnGames.setOnClickListener {
             replaceFragment(GamesAndConsoles())
         }
-
+        binding.btnHousehold.setOnClickListener {
+            replaceFragment(HomeAndHouseholds())
+        }
+        binding.btnBeauty.setOnClickListener {
+            replaceFragment(BeautyAndHealth())
+        }
+        binding.btnSports.setOnClickListener {
+            replaceFragment(OutdoorAndSports())
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
