@@ -15,23 +15,26 @@
 <Button
         android:id="@+id/settings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="250dp"
-        android:text="Settings" />
+        android:text="Settings"
+        android:background="@color/white"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/privacypolicy"
         android:text="Privacy Policy"
-        android:layout_marginTop="300dp"/>
+        android:layout_marginTop="300dp"
+        android:background="@color/white"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/requestsupport"
         android:text="Request Support"
-        android:layout_marginTop="350dp"/>
+        android:layout_marginTop="350dp"
+        android:background="@color/white"/>
 
     <ImageView
         android:id="@+id/imageView"
