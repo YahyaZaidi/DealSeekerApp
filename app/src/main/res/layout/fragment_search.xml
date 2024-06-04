@@ -27,7 +27,6 @@
                 android:id="@+id/searchInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_corner"
                 android:hint="What are you looking for?"
@@ -35,7 +34,8 @@
                 android:padding="8dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"/>
 
             <Button
                 android:id="@+id/searchButton"

@@ -1,32 +1,29 @@
 package com.example.dealseekerapplication
 
 import android.Manifest
-import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
-import android.os.Build
-import android.util.Log
+import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
-import com.google.firebase.messaging.FirebaseMessaging
-
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dealseekerapplication.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var permission : AppPermissions
 
-
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // Permission was granted, set up as necessary
+        } else {
+            // Permission was denied, handle the failure
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +36,14 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigationView()
         requestNotificationPermission()
 
+        permission = AppPermissions()
 
+        if (permission.isLocationOk(this)){
+            println("Allowed")
+        }else{
+            permission.requestLocationPermission(this)
+            println("denied")
+        }
 
     }
 
@@ -63,16 +67,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            // Permission was granted, set up as necessary
-        } else {
-            // Permission was denied, handle the failure
-        }
-    }
-
     fun showPermissionExplanationDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Notification Permission Needed")
@@ -89,13 +83,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                    showPermissionExplanationDialog()  // Custom method to show an alert dialog explaining the permission
-                } else {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                showPermissionExplanationDialog()  // Custom method to show an alert dialog explaining the permission
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }
@@ -114,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // Permission was denied. You can notify the user that they won't receive notifications.
                 }
-                return
+
             }
             // Other 'case' lines to check for other permissions this app might request.
         }
