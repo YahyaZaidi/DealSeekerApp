@@ -4,7 +4,7 @@ data class UserData(
 
     val id: String? = null,
     val username: String? = null,
-    val password: String? = null
+    var password: String? = null
 
 )
 
