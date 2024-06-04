@@ -2,7 +2,6 @@ package com.example.dealseekerapplication
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,6 +14,16 @@ import com.example.dealseekerapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var permission : AppPermissions
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // Permission was granted, set up as necessary
+        } else {
+            // Permission was denied, handle the failure
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun setupBottomNavigationView() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -60,16 +67,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            // Permission was granted, set up as necessary
-        } else {
-            // Permission was denied, handle the failure
-        }
-    }
-
     fun showPermissionExplanationDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Notification Permission Needed")
@@ -86,13 +83,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                    showPermissionExplanationDialog()  // Custom method to show an alert dialog explaining the permission
-                } else {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                showPermissionExplanationDialog()  // Custom method to show an alert dialog explaining the permission
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }
@@ -111,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // Permission was denied. You can notify the user that they won't receive notifications.
                 }
-                return
+
             }
             // Other 'case' lines to check for other permissions this app might request.
         }
