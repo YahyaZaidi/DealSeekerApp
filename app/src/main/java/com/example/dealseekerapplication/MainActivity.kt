@@ -1,32 +1,20 @@
 package com.example.dealseekerapplication
 
 import android.Manifest
-import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.os.Build
-import android.util.Log
+import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
-import com.google.firebase.messaging.FirebaseMessaging
-
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dealseekerapplication.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-
+    private lateinit var permission : AppPermissions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +27,18 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigationView()
         requestNotificationPermission()
 
+        permission = AppPermissions()
 
+        if (permission.isLocationOk(this)){
+            println("Allowed")
+        }else{
+            permission.requestLocationPermission(this)
+            println("denied")
+        }
 
     }
+
+
 
     private fun setupBottomNavigationView() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
