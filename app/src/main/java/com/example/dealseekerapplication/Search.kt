@@ -58,5 +58,3 @@ class Search : Fragment() {
         _binding = null
     }
 }
-
-

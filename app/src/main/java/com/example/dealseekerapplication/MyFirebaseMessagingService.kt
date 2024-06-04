@@ -35,7 +35,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-    private fun handleData(data: Map<String, String>) {
+    fun handleData(data: Map<String, String>) {
         // Implement data handling logic here
         Log.d(TAG, "Handling data for key-value pairs: $data")
         // Example: Navigate to specific activity based on data content
@@ -58,12 +58,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         sendRegistrationToServer(token)
     }
 
-    private fun sendRegistrationToServer(token: String) {
+    fun sendRegistrationToServer(token: String) {
         // Add your logic to send token to your app server.
         Log.d(TAG, "Sending token to server: $token")
     }
 
-    private fun sendNotification(title: String, messageBody: String) {
+    fun sendNotification(title: String, messageBody: String) {
         Log.d(TAG, "Sending notification with title: $title and body: $messageBody")
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

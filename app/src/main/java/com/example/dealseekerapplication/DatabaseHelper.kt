@@ -11,7 +11,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val DATABASE_VERSION = 1
 
         // Existing table for CamerasA
-        private const val CREATE_TABLE_CAMERASA = """
+        const val CREATE_TABLE_CAMERASA = """
             CREATE TABLE CamerasA (
                 id INTEGER PRIMARY KEY,
                 name TEXT,
@@ -27,7 +27,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         """
 
         // New table for Cameras
-        private const val CREATE_TABLE_CAMERAS = """
+        const val CREATE_TABLE_CAMERAS = """
             CREATE TABLE Cameras (
                 url TEXT,
                 Picture_URL TEXT,
