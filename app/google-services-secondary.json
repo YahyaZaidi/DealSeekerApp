@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694545634524",
+    "project_id": "product-comparison-64407",
+    "storage_bucket": "product-comparison-64407.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694545634524:android:1473ce1f668c713efed019",
+        "android_client_info": {
+          "package_name": "com.example.dealseekerapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPDMY2v-MwLkBwVUYz4w7vFS_ahOBkaDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
