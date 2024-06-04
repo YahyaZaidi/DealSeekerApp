@@ -4,26 +4,15 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.dealseekerapplication.constants.AppConstant
 import com.example.dealseekerapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var permission : AppPermissions
-
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            // Permission was granted, set up as necessary
-        } else {
-            // Permission was denied, handle the failure
-        }
-    }
+    private lateinit var notificationPermission: AppPermissions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +23,31 @@ class MainActivity : AppCompatActivity() {
 
 
         setupBottomNavigationView()
-        requestNotificationPermission()
-
         permission = AppPermissions()
+        notificationPermission = AppPermissions()
 
-        if (permission.isLocationOk(this)){
-            println("Allowed")
-        }else{
+
+        if (permission.isLocationOk(this)) {
+            println("Location Permission Allowed")
+        } else {
             permission.requestLocationPermission(this)
-            println("denied")
+            println("Location Permission Denied")
+        }
+
+        if (notificationPermission.isNotificationOk(this)) {
+            println("Notification Permission Allowed")
+        } else {
+            if (notificationPermission.isNotificationOk(this)) {
+                println("Notification Permission Allowed")
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                    notificationPermission.showPermissionExplanationDialog(this) {
+                        notificationPermission.requestNotificationPermission(this)
+                    }
+                } else {
+                    notificationPermission.requestNotificationPermission(this)
+                }
+            }
         }
 
     }
@@ -67,51 +72,26 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun showPermissionExplanationDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Notification Permission Needed")
-        builder.setMessage("We need your permission to send you notifications about important updates and offers. Notifications can be turned off anytime from settings.")
-        builder.setPositiveButton("OK") { dialog, which ->
-            // User clicked OK button. Ask for permission.
-            requestNotificationPermission()
-        }
-        builder.setNegativeButton("No thanks") { dialog, which ->
-            // User refused to grant permission. Handle the refusal gracefully.
-            dialog.dismiss()
-        }
-        builder.create().show()
-    }
-
-    private fun requestNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                showPermissionExplanationDialog()  // Custom method to show an alert dialog explaining the permission
-            } else {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        }
-    }
-
-
-    companion object {
-        private const val NOTIFICATION_PERMISSION_REQUEST_CODE = 101
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            NOTIFICATION_PERMISSION_REQUEST_CODE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // Permission was granted. You can now set up notifications.
+            AppConstant.LOCATION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    println("Location Permission Granted")
                 } else {
-                    // Permission was denied. You can notify the user that they won't receive notifications.
+                    println("Location Permission Denied")
                 }
-
             }
-            // Other 'case' lines to check for other permissions this app might request.
+            AppConstant.NOTIFICATION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    println("Notification Permission Granted")
+                } else {
+                    println("Notification Permission Denied")
+                }
+            }
         }
     }
-
 
 }
 
