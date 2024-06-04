@@ -17,8 +17,8 @@ import org.json.JSONArray
 class Wishlist : Fragment() {
 
     private lateinit var listView: ListView
-    private lateinit var adapter: WishlistAdapter
-    private var wishlistItems = ArrayList<String>()
+    lateinit var adapter: WishlistAdapter
+    var wishlistItems = ArrayList<String>()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class Wishlist : Fragment() {
     }
 
 
-    private fun loadWishlistItems() {
+    fun loadWishlistItems() {
         val prefs = requireActivity().getSharedPreferences("WishlistPrefs", Context.MODE_PRIVATE)
         val itemsJson = prefs.getString("wishlistItems", null)
         Log.d("Wishlist", "Loading items: $itemsJson")
@@ -72,7 +72,7 @@ class Wishlist : Fragment() {
         }
     }
 
-    private fun saveWishlistItems() {
+    fun saveWishlistItems() {
         val prefs = requireActivity().getSharedPreferences("WishlistPrefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         val jsonArray = JSONArray()

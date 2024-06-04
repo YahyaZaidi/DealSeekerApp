@@ -3,23 +3,19 @@ package com.example.dealseekerapplication
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.dealseekerapplication.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.auth.User
 
-class forgotPassword : AppCompatActivity() {
+class forgotPassword(mockDatabase: FirebaseDatabase) : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +44,7 @@ class forgotPassword : AppCompatActivity() {
         }
     }
 
-    private fun updatePassword(username: String, password: String) {
+    fun updatePassword(username: String, password: String) {
         databaseReference.orderByChild("username").equalTo(username)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 //Handle database changes
